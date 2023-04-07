@@ -1,42 +1,47 @@
 class SanPham {
   final String? id;
   final String name;
-  final String kingOfBook;
+  final String kindOfBook;
   final double price;
   final String imgUrl;
   final String author;
-  final int quantity;
+  final String desciption;
+  final String NXB;
   final bool FavoriteBook;
 
   SanPham({
     this.id,
     required this.imgUrl,
-    required this.kingOfBook,
+    required this.kindOfBook,
     required this.name,
     required this.price,
     required this.author,
-    required this.quantity,
+    required this.desciption,
+    required this.NXB,
     this.FavoriteBook = false,
   });
 
   SanPham copyWith({
     String? id,
     String? name,
-    String? kingOfBook,
+    String? kindOfBook,
     String? imgUrl,
     double? price,
     String? author,
-    int? quantity,
+    String? desciption,
+    String? NXB,
     bool? FavoriteBook,
   }) {
     return SanPham(
       id: id ?? this.id,
       imgUrl: imgUrl ?? this.imgUrl,
-      kingOfBook: kingOfBook ?? this.kingOfBook,
+      kindOfBook: kindOfBook ?? this.kindOfBook,
       name: name ?? this.name,
       price: price ?? this.price,
       author: author ?? this.author,
-      quantity: quantity ?? this.quantity,
-      );
+      desciption: desciption ?? this.desciption,
+      NXB: NXB ?? this.NXB,
+      FavoriteBook: FavoriteBook ?? this.FavoriteBook,
+    );
   }
 }

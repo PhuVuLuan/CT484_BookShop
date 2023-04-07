@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ptud_dd/ui/SanPham/QuanLySanPham.dart';
+import 'ui/SanPham/ChiTietSP.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,11 +23,12 @@ class MyApp extends StatelessWidget {
           secondary: Colors.deepOrange,
         )
       ),
-      home: Scaffold(appBar: AppBar(
-        title: const Text('Books Shop'),
+      home: SafeArea(
+        child: ChiTietSP(
+          QuanLySP().items[0],
+        ),
       ),
-      body: const Text('Welcome to Book Shop'),
-      )
+      
     );
   }
 }
