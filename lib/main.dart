@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ptud_dd/ui/SanPham/QuanLySanPham.dart';
 import 'ui/SanPham/ChiTietSP.dart';
+import 'ui/SanPham/TongQuan.dart';
+import 'ui/SanPham/SanPham_ND.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,10 +25,8 @@ class MyApp extends StatelessWidget {
           secondary: Colors.deepOrange,
         )
       ),
-      home: SafeArea(
-        child: ChiTietSP(
-          QuanLySP().items[0],
-        ),
+      home: const SafeArea(
+        child: SanPhamND(),
       ),
       
     );
