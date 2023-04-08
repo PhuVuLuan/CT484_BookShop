@@ -3,6 +3,7 @@ import 'package:ptud_dd/ui/SanPham/QuanLySanPham.dart';
 import 'ui/SanPham/ChiTietSP.dart';
 import 'ui/SanPham/TongQuan.dart';
 import 'ui/SanPham/SanPham_ND.dart';
+import 'ui/cart/ThongTinGioHang.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       home: const SafeArea(
-        child: SanPhamND(),
+        child: info_cart(),
       ),
       
     );
