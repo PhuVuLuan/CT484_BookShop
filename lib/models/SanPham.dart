@@ -1,46 +1,46 @@
 class SanPham {
   final String? id;
-  final String name;
-  final String kindOfBook;
-  final double price;
   final String imgUrl;
+  final String name;
   final String author;
-  final String desciption;
-  final String NXB;
+  final String category;
+  final String nxb;
+  final double price;
+  final String description;
   final bool FavoriteBook;
 
   SanPham({
     this.id,
     required this.imgUrl,
-    required this.kindOfBook,
     required this.name,
-    required this.price,
     required this.author,
-    required this.desciption,
-    required this.NXB,
+    required this.category,
+    required this.nxb,
+    required this.price,
+    required this.description,
     this.FavoriteBook = false,
   });
 
   SanPham copyWith({
     String? id,
-    String? name,
-    String? kindOfBook,
     String? imgUrl,
-    double? price,
+    String? name,
     String? author,
-    String? desciption,
-    String? NXB,
+    String? category,
+    String? nxb,
+    double? price,
+    String? description,
     bool? FavoriteBook,
   }) {
     return SanPham(
       id: id ?? this.id,
       imgUrl: imgUrl ?? this.imgUrl,
-      kindOfBook: kindOfBook ?? this.kindOfBook,
       name: name ?? this.name,
-      price: price ?? this.price,
       author: author ?? this.author,
-      desciption: desciption ?? this.desciption,
-      NXB: NXB ?? this.NXB,
+      category: category ?? this.category,
+      nxb: nxb ?? this.nxb,
+      price: price ?? this.price,
+      description: description ?? this.description,
       FavoriteBook: FavoriteBook ?? this.FavoriteBook,
     );
   }

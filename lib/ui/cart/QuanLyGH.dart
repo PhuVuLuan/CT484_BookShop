@@ -1,8 +1,8 @@
-import '../../models/ItemDesciption.dart';
+import '../../models/info_cart_item.dart';
 
 class QuanLyGioHang {
-  final Map<String, ItemDescription> _items = {
-    'b1': ItemDescription(
+  final Map<String, info_cart_item> _items = {
+    'b1': info_cart_item(
       id: 'c1',
       name: 'Doraemon',
       imgUrl: 'https://nhatrangbooks.com/wp-content/uploads/2019/10/fcb60eec06455f029cf12a9b8ff8fda1.jpg',
@@ -15,11 +15,11 @@ class QuanLyGioHang {
     return _items.length;
   }
 
-  List<ItemDescription> get sanpham {
+  List<info_cart_item> get sanpham {
     return _items.values.toList();
   }
 
-  Iterable<MapEntry<String, ItemDescription>> get Entries {
+  Iterable<MapEntry<String, info_cart_item>> get Entries {
     return {..._items}.entries;
   }
 

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ptud_dd/ui/cart/show_cart.dart';
+import 'package:ptud_dd/ui/shared/DieuHuong.dart';
 import 'HienThi_luoi.dart';
+import '../cart/QuanLyGH.dart';
+import 'badge.dart';
 
 enum FilterOptions { favorite, all }
 
@@ -23,18 +27,21 @@ class tongquanSP extends State<tongQuan> {
           buildShoppingCartIcon(),
         ],
       ),
+      drawer: const DieuHuong(),
       body: HienThiLuoi(_showFavorites),
     );
   }
 
   Widget buildShoppingCartIcon() {
-    return IconButton(
-      icon: const Icon(
-        Icons.shopping_cart,
-      ),
+   return badge(
+    data: QuanLyGioHang().SoLuong_SP,
+    color: Colors.red,
+    child: IconButton(
+      icon: const Icon(Icons.shopping_cart),
       onPressed: () {
-        print('Go to cart screeen');
+        Navigator.of(context).pushNamed(show_cart.routeName);
       },
+    ),
     );
   }
 

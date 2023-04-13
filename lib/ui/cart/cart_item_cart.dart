@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../models/ItemDesciption.dart';
+import '../../models/info_cart_item.dart';
 import '../shared/HopThoai.dart';
 
 class thongTinMatHang extends StatelessWidget {
   final String id_sp;
-  final ItemDescription itemD;
+  final info_cart_item itemD;
 
   const thongTinMatHang({
     required this.id_sp,
@@ -51,21 +51,18 @@ class thongTinMatHang extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: ListTile(
           leading: CircleAvatar(
-            // child: SizedBox(
-              // padding: const EdgeInsets.all(1),
-              // height: 100,
                 child: Image.network(
                   itemD.imgUrl,
-                  
-                // ),
               
             ),
-          ),
+        ),
           title: Text(itemD.name),
           subtitle: Text('Tổng tiền: ${(itemD.price * itemD.quantity)} vnd'),
           trailing: Text('${itemD.quantity} x'),
+          
         ),
       ),
+      
     );
   }
 }

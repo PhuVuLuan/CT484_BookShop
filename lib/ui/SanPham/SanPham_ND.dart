@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'DanhSach_SPND.dart';
-import 'QuanLySanPham.dart';
+import 'QuanLySP.dart';
+import '../shared/DieuHuong.dart';
 
 class SanPhamND extends StatelessWidget {
+  static const routeName = '/sanpham-nd';
   const SanPhamND({super.key});
 
   @override
@@ -15,6 +17,7 @@ class SanPhamND extends StatelessWidget {
           AddButton(context),
         ],
       ),
+      drawer: const DieuHuong(),
       body: RefreshIndicator(
         onRefresh: () async => print('Làm Mới Sản Phẩm'),
         child: UserProductListView(quanlysp),
@@ -24,7 +27,7 @@ class SanPhamND extends StatelessWidget {
 
   Widget UserProductListView(QuanLySP quanlysp) {
     return ListView.builder(
-      itemCount: quanlysp.iCount,
+      itemCount: quanlysp.itemCount,
       itemBuilder: (ctx, i) => Column(
         children: [
           DanhSachSP(

@@ -1,11 +1,11 @@
-class ItemDescription {
+class info_cart_item{
   final String id;
   final String name;
   final String imgUrl;
   final int quantity;
   final double price;
 
-  ItemDescription({
+  info_cart_item({
     required this.id,
     required this.name,
     required this.imgUrl,
@@ -13,14 +13,14 @@ class ItemDescription {
     required this.quantity,
   });
 
-  ItemDescription copyWith({
+ info_cart_item copyWith({
     String? id,
     String? name,
     String? imgUrl,
     double? price,
     int? quantity,
   }) {
-    return ItemDescription(
+    return info_cart_item(
       id: id ?? this.id,
       name: name ?? this.name,
       imgUrl: imgUrl ?? this.imgUrl,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ptud_dd/ui/SanPham/QuanLySanPham.dart';
-import 'ui/SanPham/ChiTietSP.dart';
-import 'ui/SanPham/TongQuan.dart';
-import 'ui/SanPham/SanPham_ND.dart';
-import 'ui/cart/ThongTinGioHang.dart';
+// import 'ui/SanPham/ChiTietSP.dart';
+// import 'ui/SanPham/QuanLySP.dart';
+// import 'ui/SanPham/TongQuan.dart';
+// import 'ui/cart/show_cart.dart';
+import 'ui/HienThi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,21 +16,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Books Shop',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Lato',
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-        ).copyWith(
-          secondary: Colors.deepOrange,
-        )
-      ),
-      home: const SafeArea(
-        child: info_cart(),
-      ),
-      
-    );
+        title: 'Books Shop',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            fontFamily: 'Lato',
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.green,
+            ).copyWith(
+              secondary: Color.fromARGB(255, 255, 233, 34),
+            )),
+        home: const tongQuan(),
+        routes: {
+          SanPhamND.routeName: (ctx) => const SanPhamND(),
+          showOrder.routeName: (ctx) => const showOrder(),
+          show_cart.routeName: (ctx) => const show_cart(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == ChiTietSP.routeName) {
+            final sanphamId = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (ctx) {
+                return ChiTietSP(
+                  QuanLySP().findById(sanphamId)!,
+                );
+              },
+            );
+          }
+          return null;
+        });
   }
 }
 

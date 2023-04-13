@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'QuanLyGioHang.dart';
-import 'ThongTinMatHang.dart';
+import 'QuanLyGH.dart';
+import 'cart_item_cart.dart';
 
-class info_cart extends StatelessWidget {
+class show_cart extends StatelessWidget {
   static const routeName = '/cart';
-  const info_cart({super.key});
+  const show_cart({super.key});
 
   @override
   Widget build(BuildContext context) {
     final cart = QuanLyGioHang();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Giỏ Hàng')
-      ),
-      
+      appBar: AppBar(title: const Text('Giỏ Hàng')),
       body: Column(
         children: <Widget>[
           cartSummary(cart, context),
-          const SizedBox(height: 10,),
-          Expanded(child: cartDetails(cart),)
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: cartDetails(cart),
+          )
         ],
       ),
     );
@@ -54,7 +55,7 @@ class info_cart extends StatelessWidget {
                 textStyle: TextStyle(color: Theme.of(context).primaryColor),
               ),
               child: const Text('Đặt hàng'),
-              )
+            )
           ],
         ),
       ),
@@ -63,13 +64,12 @@ class info_cart extends StatelessWidget {
 
   Widget cartDetails(QuanLyGioHang cart) {
     return ListView(
-      children: cart.Entries
-        .map((e) => thongTinMatHang(
+      children: cart.Entries.map(
+        (e) => thongTinMatHang(
           id_sp: e.key,
           itemD: e.value,
         ),
-      )
-      .toList(),
+      ).toList(),
     );
   }
 }
