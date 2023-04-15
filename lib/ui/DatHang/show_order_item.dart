@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/info_orders_item.dart';
 
+// ignore: camel_case_types
 class showOrderItem extends StatefulWidget {
   final info_orders_item dathang;
   const showOrderItem(this.dathang, {super.key});
@@ -12,6 +13,7 @@ class showOrderItem extends StatefulWidget {
   State<showOrderItem> createState() => orderState();
 }
 
+// ignore: camel_case_types
 class orderState extends State<showOrderItem> {
   var expanded = false;
   
@@ -37,18 +39,19 @@ class orderState extends State<showOrderItem> {
           .map((e) => Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Image.network(e.imgUrl,scale: 16,),
+              Image.network(e.imgUrl,scale: 10,),
+              
               Text(
                 e.name,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                '${e.quantity}x ${e.price} vnd',
+                'x${e.quantity}',
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 17,
                   color: Colors.grey,
                 ),
               )

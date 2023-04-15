@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '/ui/HienThi.dart';
 import '../../models/info_cart_item.dart';
 import '../shared/HopThoai.dart';
 
+// ignore: camel_case_types
 class thongTinMatHang extends StatelessWidget {
   final String id_sp;
   final info_cart_item itemD;
@@ -35,7 +38,7 @@ class thongTinMatHang extends StatelessWidget {
         return hopThoai(context, 'Bạn có muốn xóa mặt hàng này không?',);
       },
       onDismissed: (direction) {
-        print('Cart item dismissed');
+        context.read<QuanLyGioHang>().remove(id_sp);
       },
       child: xayDungGioHang(),
     );

@@ -27,4 +27,17 @@ class QuanLyDH with ChangeNotifier {
   List<info_orders_item> get orders {
     return [...dathang];
   }
+
+  void themDatHang(List<info_cart_item> sanphamDH, double total) async {
+    dathang.insert(
+      0,
+      info_orders_item(
+        id: 'o${DateTime.now().toIso8601String()}',
+        soTien: total,
+        sanpham: sanphamDH,
+        dateTime: DateTime.now(),
+        )
+      );
+      notifyListeners();
+  }
 }

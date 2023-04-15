@@ -23,3 +23,21 @@ Future<bool?> hopThoai(BuildContext context, String message) {
     ),
   );
 }
+
+Future<void> loiHT(BuildContext context, String message) {
+  return showDialog(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      title: const Text('Xảy ra lỗi!'),
+      content: Text(message),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Ok'),
+          onPressed: () {
+            Navigator.of(ctx).pop();
+          },
+        ),
+      ],
+    ),
+  );
+}

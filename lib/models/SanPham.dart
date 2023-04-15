@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class SanPham {
   final String? id;
   final String imgUrl;
@@ -7,7 +9,7 @@ class SanPham {
   final String nxb;
   final double price;
   final String description;
-  final bool FavoriteBook;
+  final ValueNotifier<bool> _FavoriteBook;
 
   SanPham({
     this.id,
@@ -18,8 +20,20 @@ class SanPham {
     required this.nxb,
     required this.price,
     required this.description,
-    this.FavoriteBook = false,
-  });
+    FavoriteBook = false,
+  }) : _FavoriteBook = ValueNotifier(FavoriteBook);
+
+  set FavoriteBook(bool newValue) {
+    _FavoriteBook.value = newValue;
+  }
+
+  bool get FavoriteBook {
+    return _FavoriteBook.value;
+  }
+
+  ValueNotifier<bool> get FavoriteBookListennable {
+    return _FavoriteBook;
+  }
 
   SanPham copyWith({
     String? id,

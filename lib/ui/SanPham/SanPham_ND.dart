@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'ChinhSuaSP.dart';
 import 'DanhSach_SPND.dart';
 import 'QuanLySP.dart';
 import '../shared/DieuHuong.dart';
@@ -9,7 +11,7 @@ class SanPhamND extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final quanlysp = QuanLySP();
+    final quanlySP = QuanLySP();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sản Phẩm Của Bạn'),
@@ -20,22 +22,26 @@ class SanPhamND extends StatelessWidget {
       drawer: const DieuHuong(),
       body: RefreshIndicator(
         onRefresh: () async => print('Làm Mới Sản Phẩm'),
-        child: UserProductListView(quanlysp),
+        child: UserProductListView(quanlySP),
       ),
     );
   }
 
   Widget UserProductListView(QuanLySP quanlysp) {
-    return ListView.builder(
-      itemCount: quanlysp.itemCount,
-      itemBuilder: (ctx, i) => Column(
-        children: [
-          DanhSachSP(
-            quanlysp.items[i],
+    return Consumer<QuanLySP>(
+      builder: (ctx, quanlySP, child) {
+        return ListView.builder(
+          itemCount: quanlySP.itemCount,
+          itemBuilder: (ctx, i) => Column(
+            children: [
+              DanhSachSP(
+                quanlySP.items[i],
+              ),
+              const Divider(),
+            ],
           ),
-          const Divider(),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -43,7 +49,7 @@ class SanPhamND extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.add),
       onPressed: () {
-        print('Đến trang chỉnh sửa sản phẩm');
+        Navigator.of(context).pushNamed(EditSanPham.routeName);
       },
     );
   }

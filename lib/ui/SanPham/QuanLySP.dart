@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import '../../models/SanPham.dart';
 import 'package:flutter/foundation.dart';
 
@@ -20,7 +22,7 @@ class QuanLySP with ChangeNotifier {
       id: 'a2',
       imgUrl:
           'https://cdn0.fahasa.com/media/catalog/product/8/9/8935244884852.jpg',
-      name: 'Doraemon: Nobita - Vũ trụ Phiêu Lưu Kí',
+      name: 'Nobita - Vũ trụ Phiêu Lưu Kí',
       author: 'Fujiko F Fujio',
       category: 'Hài kịch, khoa học, viễn tưởng',
       nxb: 'Kim Đồng',
@@ -33,7 +35,7 @@ class QuanLySP with ChangeNotifier {
       id: 'a3',
       imgUrl:
           'https://cdn0.fahasa.com/media/catalog/product/t/h/tham-tu-lung-danh-conan---bai-tho-tinh-tham-do---tap-1---tb-2023.jpg',
-      name: 'Thám Tử Lừng Danh Conan: Bài Thơ Tình Đỏ Thẫm',
+      name: 'Bài Thơ Tình Đỏ Thẫm',
       author: 'Gosho Aoyama, Takahiro Okura',
       category: 'Hành động, phiêu lưu, viễn tưởng, hài',
       nxb: 'Kim Đồng',
@@ -75,5 +77,33 @@ class QuanLySP with ChangeNotifier {
     } catch (error) {
       return null;
     }
+  }
+
+  void addSanPham(SanPham sanpham) {
+    _items.add(
+      sanpham.copyWith(
+        id: 'p${DateTime.now().toIso8601String()}',
+      ),
+    );
+    notifyListeners();
+  }
+
+  void updateSanPham(SanPham sanpham) {
+    final index = _items.indexWhere((item) => item.id == sanpham.id);
+    if (index >= 0) {
+      _items[index] = sanpham;
+      notifyListeners();
+    }
+  }
+
+  void toggleFavoriteStatus(SanPham sanpham) {
+    final savedStatus = sanpham.FavoriteBook;
+    sanpham.FavoriteBook = !savedStatus;
+  }
+
+  void deleteSanPham(String id) {
+    final index = _items.indexWhere((item) => item.id == id);
+    _items.removeAt(index);
+    notifyListeners();
   }
 }

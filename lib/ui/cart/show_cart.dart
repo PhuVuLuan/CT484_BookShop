@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'QuanLyGH.dart';
-import 'cart_item_cart.dart';
+import 'cart_item_card.dart';
+import '../DatHang/QuanLyDH.dart';
 
+// ignore: camel_case_types
 class show_cart extends StatelessWidget {
   static const routeName = '/cart';
   const show_cart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cart = QuanLyGioHang();
+    final cart = context.watch<QuanLyGioHang>();
     return Scaffold(
       appBar: AppBar(title: const Text('Giỏ Hàng')),
       body: Column(
@@ -48,8 +51,13 @@ class show_cart extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor,
             ),
             TextButton(
-              onPressed: () {
-                print('An order has been added');
+              onPressed:  
+                cart.Total <= 0 ? null : () {
+                  context.read<QuanLyDH>().themDatHang(
+                    cart.sanpham,
+                    cart.Total,
+                  );
+                  cart.clear();
               },
               style: TextButton.styleFrom(
                 textStyle: TextStyle(color: Theme.of(context).primaryColor),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'ChinhSuaSP.dart';
 import '../../models/SanPham.dart';
+import 'QuanLySP.dart';
 
 class DanhSachSP extends StatelessWidget {
   final SanPham sanpham;
@@ -30,18 +33,17 @@ class DanhSachSP extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.delete),
       onPressed: () {
-        print('Xóa một sản phẩm');
-        // context.read<QuanLySP>().deleteProduct(sanpham.id!);
-        // ScaffoldMessenger.of(context)
-        //   ..hideCurrentSnackBar()
-        //   ..showSnackBar(
-        //     const SnackBar(
-        //       content: Text(
-        //         'Xóa Sản Phẩm',
-        //         textAlign: TextAlign.center,
-        //       ),
-        //     ),
-        //   );
+        context.read<QuanLySP>().deleteSanPham(sanpham.id!);
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            const SnackBar(
+              content: Text(
+                'Xóa Sản Phẩm',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
       },
       color: Theme.of(context).colorScheme.error,
     );
@@ -51,11 +53,10 @@ class DanhSachSP extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () {
-        print('Đến giao diện chỉnh sửa sản phẩm');
-        // Navigator.of(context).pushNamed(
-        //   EditProductScreen.routeName,
-        //   arguments: product.id,
-        // );
+        Navigator.of(context).pushNamed(
+          EditSanPham.routeName,
+          arguments: sanpham.id,
+        );
       },
       color: Theme.of(context).primaryColor,
     );
