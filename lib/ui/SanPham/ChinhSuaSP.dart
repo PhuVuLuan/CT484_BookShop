@@ -84,7 +84,7 @@ class _ChinhSPState extends State<ChinhSP> {
         await quanlySP.ThemSP(_editedSP);
       }
     } catch (error) {
-      await LoiHT(context, 'something went wrong,');
+      await LoiHT(context, 'Đã xảy ra sự cố');
     }
     setState(() {
       _isLoading = false;
@@ -133,12 +133,12 @@ class _ChinhSPState extends State<ChinhSP> {
   TextFormField buildNameField() {
     return TextFormField(
       initialValue: _editedSP.name,
-      decoration: const InputDecoration(labelText: 'Name'),
+      decoration: const InputDecoration(labelText: 'Tên'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please provide a value.';
+          return 'Vui lòng nhập giá trị!';
         }
         return null;
       },
@@ -151,12 +151,12 @@ class _ChinhSPState extends State<ChinhSP> {
   TextFormField buildAuthorField() {
     return TextFormField(
       initialValue: _editedSP.author,
-      decoration: const InputDecoration(labelText: 'Author'),
+      decoration: const InputDecoration(labelText: 'Tác giả'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please provide a value.';
+          return 'Vui lòng nhập giá trị!';
         }
         return null;
       },
@@ -169,12 +169,12 @@ class _ChinhSPState extends State<ChinhSP> {
   TextFormField buildCategoryField() {
     return TextFormField(
       initialValue: _editedSP.category,
-      decoration: const InputDecoration(labelText: 'Category'),
+      decoration: const InputDecoration(labelText: 'Thể loại'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please provide a value.';
+          return 'Vui lòng nhập giá trị!';
         }
         return null;
       },
@@ -192,7 +192,7 @@ class _ChinhSPState extends State<ChinhSP> {
       autofocus: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please provide a value.';
+          return 'Vui lòng nhập giá trị!';
         }
         return null;
       },
@@ -205,18 +205,18 @@ class _ChinhSPState extends State<ChinhSP> {
   TextFormField buildPriceField() {
     return TextFormField(
       initialValue: _editedSP.price.toString(),
-      decoration: const InputDecoration(labelText: 'Price'),
+      decoration: const InputDecoration(labelText: 'Giá'),
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.number,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter a price.';
+          return 'Vui lòng nhập giá trị!';
         }
         if (double.tryParse(value) == null) {
-          return 'Please enter a valid number.';
+          return 'Vui lòng nhập một số hợp lệ!';
         }
         if (double.parse(value) <= 0) {
-          return 'Please enter a number greater than zero.';
+          return 'Vui lòng nhập một số lớn hơn 0!';
         }
         return null;
       },
@@ -229,15 +229,15 @@ class _ChinhSPState extends State<ChinhSP> {
   TextFormField buildDescriptionField() {
     return TextFormField(
       initialValue: _editedSP.description,
-      decoration: const InputDecoration(labelText: 'Description'),
+      decoration: const InputDecoration(labelText: 'Mô tả'),
       maxLines: 3,
       keyboardType: TextInputType.multiline,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter a description.';
+          return 'Vui lòng nhập mô tả!';
         }
         if (value.length < 10) {
-          return 'Should be at least 10 characters long.';
+          return 'Ít nhất 10 ký tự.';
         }
         return null;
       },
@@ -280,7 +280,7 @@ class _ChinhSPState extends State<ChinhSP> {
 
   TextFormField buildImgURLField() {
     return TextFormField(
-      decoration: const InputDecoration(labelText: 'Image URL'),
+      decoration: const InputDecoration(labelText: 'Ảnh-URL'),
       keyboardType: TextInputType.url,
       textInputAction: TextInputAction.done,
       controller: _imgUrlController,
@@ -288,10 +288,10 @@ class _ChinhSPState extends State<ChinhSP> {
       onFieldSubmitted: (value) => _saveForm(),
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter an image URL.';
+          return 'Vui lòng nhập URl!';
         }
         if (!_isValidImgUrl(value)) {
-          return 'Please enter a valid image URL.';
+          return 'URL không hợp lệ.';
         }
         return null;
       },

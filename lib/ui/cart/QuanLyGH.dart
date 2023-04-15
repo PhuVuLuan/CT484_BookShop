@@ -4,15 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../../models/SanPham.dart';
 
 class QuanLyGioHang with ChangeNotifier {
-  Map<String, info_cart_item> _items = {
-    'b1': info_cart_item(
-      id: 'c1',
-      name: 'Doraemon',
-      imgUrl: 'https://nhatrangbooks.com/wp-content/uploads/2019/10/fcb60eec06455f029cf12a9b8ff8fda1.jpg',
-      price: 20000,
-      quantity: 2,
-    ),
-  };
+  Map<String, info_cart_item> _items = {};
 
   // ignore: non_constant_identifier_names
   int get SoLuong_SP {

@@ -18,7 +18,7 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.shop),
-            title: const Text('Shop'),
+            title: const Text('Trang chủ'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
             },
@@ -26,7 +26,7 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.payment),
-            title: const Text('Orders'),
+            title: const Text('Đặt hàng'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(showOrder.routeName);
             },
@@ -34,7 +34,7 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.edit),
-            title: const Text('Manager Products'),
+            title: const Text('Quản lý sản phẩm'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(SanPhamND.routeName);
             },
