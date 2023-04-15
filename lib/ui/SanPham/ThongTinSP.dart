@@ -1,10 +1,9 @@
-// ignore_for_file: file_names
-
+import 'package:BookShop/ui/HienThi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../HienThi.dart';
 import '../../models/SanPham.dart';
-// import 'ChiTietSP.dart';
+import '../cart/QuanLyGH.dart';
+import 'ChiTietSP.dart';
 
 class ThongTinSP extends StatelessWidget {
   static const routeName = '/thongtin-sp';
@@ -50,7 +49,7 @@ class ThongTinSP extends StatelessWidget {
             ),
             color: Theme.of(context).colorScheme.secondary,
             onPressed: () {
-              sanpham.FavoriteBook = !FavoriteBook;
+              ctx.read<QuanLySP>().toggleFavoriteStatus(sanpham);
             },
           );
         },
@@ -73,10 +72,11 @@ class ThongTinSP extends StatelessWidget {
                 content: const Text('Thêm sản phẩm vào giỏ hàng'),
                 duration: const Duration(seconds: 2),
                 action: SnackBarAction(
-                  label: 'Hoàn Tác',
-                  onPressed: () {giohang.removeSingle(sanpham.id!);}
-                  ),
-                ),
+                    label: 'Hoàn Tác',
+                    onPressed: () {
+                      giohang.removeSingle(sanpham.id!);
+                    }),
+              ),
             );
         },
         color: Theme.of(context).colorScheme.secondary,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'ChinhSuaSP.dart';
 import '../../models/SanPham.dart';
+import 'ChinhSuaSP.dart';
 import 'QuanLySP.dart';
 
 class DanhSachSP extends StatelessWidget {
@@ -33,7 +33,7 @@ class DanhSachSP extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.delete),
       onPressed: () {
-        context.read<QuanLySP>().deleteSanPham(sanpham.id!);
+        context.read<QuanLySP>().XoaSP(sanpham.id!);
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
@@ -54,7 +54,7 @@ class DanhSachSP extends StatelessWidget {
       icon: const Icon(Icons.edit),
       onPressed: () {
         Navigator.of(context).pushNamed(
-          EditSanPham.routeName,
+          ChinhSP.routeName,
           arguments: sanpham.id,
         );
       },

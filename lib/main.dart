@@ -18,13 +18,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AuthManager(),),
-        ChangeNotifierProvider(create: (ctx) => QuanLySP(),),
+        // Tạo và cung cấp AuthManager
+        ChangeNotifierProvider(
+          create: (context) => AuthManager(),
+        ),
+        ChangeNotifierProxyProvider<AuthManager, QuanLySP>(
+          create: (ctx) => QuanLySP(),
+          update: (ctx, authManager, quanlySP) {
+            quanlySP!.authToken = authManager.authToken;
+            return quanlySP;
+          },
+        ),
         ChangeNotifierProvider(create: (ctx) => QuanLyGioHang()),
         ChangeNotifierProvider(create: (ctx) => QuanLyDH()),
       ],
-      child:Consumer<AuthManager>(
-         builder: (ctx, authManager, child){
+      // Consume the AuthManager instance
+      child: Consumer<AuthManager>(
+        builder: (ctx, authManager, child) {
           return MaterialApp(
             title: 'Books Shop',
             debugShowCheckedModeBanner: false,
@@ -34,7 +44,7 @@ class MyApp extends StatelessWidget {
                   primarySwatch: Colors.green,
                 ).copyWith(
                   secondary: Color.fromARGB(255, 255, 233, 34),
-            )),
+                )),
             home: authManager.isAuth
                 ? const tongQuan()
                 : FutureBuilder(
@@ -44,7 +54,7 @@ class MyApp extends StatelessWidget {
                           ? const SplashScreen()
                           : const AuthScreen();
                     },
-            ),
+                  ),
             routes: {
               SanPhamND.routeName: (ctx) => const SanPhamND(),
               showOrder.routeName: (ctx) => const showOrder(),
@@ -61,11 +71,11 @@ class MyApp extends StatelessWidget {
                   },
                 );
               }
-              if (settings.name == EditSanPham.routeName) {
+              if (settings.name == ChinhSP.routeName) {
                 final sanphamId = settings.arguments as String?;
                 return MaterialPageRoute(
                   builder: (ctx) {
-                    return EditSanPham(
+                    return ChinhSP(
                       sanphamId != null
                           ? ctx.read<QuanLySP>().findById(sanphamId)
                           : null,
@@ -74,9 +84,9 @@ class MyApp extends StatelessWidget {
                 );
               }
               return null;
-            },  
+            },
           );
-         }
+        },
       ),
     );
   }

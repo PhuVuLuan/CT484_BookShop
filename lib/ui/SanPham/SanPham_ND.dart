@@ -9,6 +9,10 @@ class SanPhamND extends StatelessWidget {
   static const routeName = '/sanpham-nd';
   const SanPhamND({super.key});
 
+  Future<void> LamMoiSP(BuildContext context) async {
+    await context.read<QuanLySP>().fetchSanPham(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     final quanlySP = QuanLySP();
@@ -20,9 +24,19 @@ class SanPhamND extends StatelessWidget {
         ],
       ),
       drawer: const DieuHuong(),
-      body: RefreshIndicator(
-        onRefresh: () async => print('Làm Mới Sản Phẩm'),
-        child: UserProductListView(quanlySP),
+      body: FutureBuilder(
+        future: LamMoiSP(context),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return RefreshIndicator(
+            onRefresh: () => LamMoiSP(context),
+            child: UserProductListView(quanlySP),
+          );
+        },
       ),
     );
   }
@@ -49,7 +63,9 @@ class SanPhamND extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.add),
       onPressed: () {
-        Navigator.of(context).pushNamed(EditSanPham.routeName);
+        Navigator.of(context).pushNamed(
+          ChinhSP.routeName,
+        );
       },
     );
   }

@@ -1,4 +1,3 @@
-// ignore: camel_case_types
 class info_cart_item{
   final String id;
   final String name;

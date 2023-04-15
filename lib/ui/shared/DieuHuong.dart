@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import '../DatHang/show_order_screen.dart';
 import '../SanPham/SanPham_ND.dart';
@@ -8,7 +6,6 @@ import '../auth/auth_manager.dart';
 
 class DieuHuong extends StatelessWidget {
   const DieuHuong({super.key});
-  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,7 +18,7 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.shop),
-            title: const Text('Trang chủ'),
+            title: const Text('Shop'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
             },
@@ -29,7 +26,7 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.payment),
-            title: const Text('Đặt hàng'),
+            title: const Text('Orders'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(showOrder.routeName);
             },
@@ -37,12 +34,12 @@ class DieuHuong extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.edit),
-            title: const Text('Quản lý sản phẩm'),
+            title: const Text('Manager Products'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(SanPhamND.routeName);
             },
           ),
-           const Divider(),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Đăng Xuất'),

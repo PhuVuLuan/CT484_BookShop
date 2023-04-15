@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '/ui/HienThi.dart';
 import '../../models/info_cart_item.dart';
 import '../shared/HopThoai.dart';
+import 'QuanLyGH.dart';
 
 // ignore: camel_case_types
 class thongTinMatHang extends StatelessWidget {
@@ -35,7 +35,10 @@ class thongTinMatHang extends StatelessWidget {
       ),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) {
-        return hopThoai(context, 'Bạn có muốn xóa mặt hàng này không?',);
+        return hopThoai(
+          context,
+          'Bạn có muốn xóa mặt hàng này không?',
+        );
       },
       onDismissed: (direction) {
         context.read<QuanLyGioHang>().remove(id_sp);
@@ -54,18 +57,15 @@ class thongTinMatHang extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: ListTile(
           leading: CircleAvatar(
-                child: Image.network(
-                  itemD.imgUrl,
-              
+            child: Image.network(
+              itemD.imgUrl,
             ),
-        ),
+          ),
           title: Text(itemD.name),
           subtitle: Text('Tổng tiền: ${(itemD.price * itemD.quantity)} vnd'),
           trailing: Text('${itemD.quantity} x'),
-          
         ),
       ),
-      
     );
   }
 }

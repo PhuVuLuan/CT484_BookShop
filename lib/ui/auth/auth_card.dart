@@ -50,7 +50,7 @@ class _AuthCardState extends State<AuthCard> {
             );
       }
     } catch (error) {
-      loiHT(
+      LoiHT(
           context,
           (error is HttpException)
               ? error.toString()
@@ -126,7 +126,7 @@ class _AuthCardState extends State<AuthCard> {
         ),
       ),
       child:
-          Text('${_authMode == AuthMode.login ? 'SIGNUP' : 'LOGIN'} INSTEAD'),
+          Text('${_authMode == AuthMode.login ? 'Đăng ký' : 'Đăng nhập'} '),
     );
   }
 
@@ -143,19 +143,19 @@ class _AuthCardState extends State<AuthCard> {
           color: Theme.of(context).primaryTextTheme.titleLarge?.color,
         ),
       ),
-      child: Text(_authMode == AuthMode.login ? 'LOGIN' : 'SIGN UP'),
+      child: Text(_authMode == AuthMode.login ? 'Đăng nhập' : 'Đăng ký'),
     );
   }
 
   Widget _buildPasswordConfirmField() {
     return TextFormField(
       enabled: _authMode == AuthMode.signup,
-      decoration: const InputDecoration(labelText: 'Confirm Password'),
+      decoration: const InputDecoration(labelText: 'Nhập lại mật khẩu'),
       obscureText: true,
       validator: _authMode == AuthMode.signup
           ? (value) {
               if (value != _passwordController.text) {
-                return 'Passwords do not match!';
+                return 'Mật khẩu không hợp lệ!';
               }
               return null;
             }
@@ -165,12 +165,12 @@ class _AuthCardState extends State<AuthCard> {
 
   Widget _buildPasswordField() {
     return TextFormField(
-      decoration: const InputDecoration(labelText: 'Password'),
+      decoration: const InputDecoration(labelText: 'Mật khẩu'),
       obscureText: true,
       controller: _passwordController,
       validator: (value) {
         if (value == null || value.length < 5) {
-          return 'Password is too short!';
+          return 'Mật khẩu ít nhất 6 ký tự';
         }
         return null;
       },
@@ -186,7 +186,7 @@ class _AuthCardState extends State<AuthCard> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value!.isEmpty || !value.contains('@')) {
-          return 'Invalid email!';
+          return 'Vui lòng nhập E-mail';
         }
         return null;
       },

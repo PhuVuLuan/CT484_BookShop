@@ -6,6 +6,7 @@ import '/ui/cart/show_cart.dart';
 import '/ui/shared/DieuHuong.dart';
 import 'HienThi_luoi.dart';
 import '../cart/QuanLyGH.dart';
+import 'QuanLySP.dart';
 import 'badge.dart';
 
 enum FilterOptions { favorite, all }
@@ -20,7 +21,14 @@ class tongQuan extends StatefulWidget {
 
 // ignore: camel_case_types
 class tongquanSP extends State<tongQuan> {
-  var _showFavorites = false;
+  final _showFavorites = ValueNotifier<bool>(false);
+  late Future<void> _fetchSanPham;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchSanPham = context.read<QuanLySP>().fetchSanPham();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,48 +41,59 @@ class tongquanSP extends State<tongQuan> {
         ],
       ),
       drawer: const DieuHuong(),
-      body: HienThiLuoi(_showFavorites),
+      body: FutureBuilder(
+        future: _fetchSanPham,
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ValueListenableBuilder<bool>(
+                valueListenable: _showFavorites,
+                // ignore: non_constant_identifier_names
+                builder: (ctx, Favorite, child) {
+                  return HienThiLuoi(Favorite);
+                });
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
     );
   }
 
   Widget buildShoppingCartIcon() {
-    return Consumer<QuanLyGioHang>(
-      builder: (ctx, quanlyGH, child){
-         return badge(
-          data: QuanLyGioHang().SoLuong_SP,
-          color: Colors.red,
-          child: IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.of(context).pushNamed(show_cart.routeName);
-            },
-          ),
-        );
-      }
-    );
+    return Consumer<QuanLyGioHang>(builder: (ctx, quanlyGH, child) {
+      return badge(
+        data: QuanLyGioHang().SoLuong_SP,
+        color: Colors.red,
+        child: IconButton(
+          icon: const Icon(Icons.shopping_cart),
+          onPressed: () {
+            Navigator.of(context).pushNamed(show_cart.routeName);
+          },
+        ),
+      );
+    });
   }
 
   Widget buildFilterMenu() {
     return PopupMenuButton(
-      onSelected: (FilterOptions selected) {
-        setState(() {
-          if (selected == FilterOptions.favorite) {
-            _showFavorites = true;
-          } else {
-            _showFavorites = false;
-          }
-        });
+      onSelected: (FilterOptions selected){
+            if (selected == FilterOptions.favorite) {
+              _showFavorites.value = true;
+            } else {
+              _showFavorites.value = false;
+            }
       },
+        
       icon: const Icon(
         Icons.more_vert,
       ),
       itemBuilder: (ctx) => [
         const PopupMenuItem(
           value: FilterOptions.favorite,
-          child: Text('Các sản phẩm yêu thích'),
+          child: Text('Sản phẩm yêu thích'),
         ),
-        const PopupMenuItem(
-            value: FilterOptions.all, child: Text('Hiển thị tất cả')),
+        const PopupMenuItem(value: FilterOptions.all, child: Text('Tất cả')),
       ],
     );
   }

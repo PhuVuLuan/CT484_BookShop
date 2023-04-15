@@ -1,6 +1,5 @@
 import 'info_cart_item.dart';
 
-// ignore: camel_case_types
 class info_orders_item {
   final String? id;
   final double soTien;

@@ -24,7 +24,7 @@ Future<bool?> hopThoai(BuildContext context, String message) {
   );
 }
 
-Future<void> loiHT(BuildContext context, String message) {
+Future<void> LoiHT(BuildContext context, String message) {
   return showDialog(
     context: context,
     builder: (ctx) => AlertDialog(

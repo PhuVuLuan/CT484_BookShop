@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/foundation.dart';
 
 class SanPham {
@@ -20,6 +22,7 @@ class SanPham {
     required this.nxb,
     required this.price,
     required this.description,
+    // ignore: non_constant_identifier_names
     FavoriteBook = false,
   }) : _FavoriteBook = ValueNotifier(FavoriteBook);
 
@@ -56,6 +59,31 @@ class SanPham {
       price: price ?? this.price,
       description: description ?? this.description,
       FavoriteBook: FavoriteBook ?? this.FavoriteBook,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'imgUrl': imgUrl,
+      'name': name,
+      'author': author,
+      'category': category,
+      'nxb': nxb,
+      'price': price,
+      'description': description,
+    };
+  }
+
+  static SanPham fromJson(Map<String, dynamic> json) {
+    return SanPham(
+      imgUrl: json['imgUrl'],
+      id: json['id'],
+      name: json['name'],
+      author: json['author'],
+      category: json['category'],
+      nxb: json['nxb'],
+      price: json['price'],
+      description: json['description'],
     );
   }
 }

@@ -4,9 +4,9 @@ import '../../models/SanPham.dart';
 import '../shared/HopThoai.dart';
 import 'QuanLySP.dart';
 
-class EditSanPham extends StatefulWidget {
+class ChinhSP extends StatefulWidget {
   static const routeName = '/edit-sanpham';
-  EditSanPham(
+  ChinhSP(
     SanPham? sanpham, {
     super.key,
   }) {
@@ -27,10 +27,10 @@ class EditSanPham extends StatefulWidget {
   }
   late final SanPham sanpham;
   @override
-  State<EditSanPham> createState() => _EditSanPhamState();
+  State<ChinhSP> createState() => _ChinhSPState();
 }
 
-class _EditSanPhamState extends State<EditSanPham> {
+class _ChinhSPState extends State<ChinhSP> {
   final _imgUrlController = TextEditingController();
   final _imgUrlFocusNode = FocusNode();
   final _editForm = GlobalKey<FormState>();
@@ -79,12 +79,12 @@ class _EditSanPhamState extends State<EditSanPham> {
     try {
       final quanlySP = context.read<QuanLySP>();
       if (_editedSP.id != null) {
-        quanlySP.updateSanPham(_editedSP);
+        await quanlySP.CapNhatSP(_editedSP);
       } else {
-        quanlySP.addSanPham(_editedSP);
+        await quanlySP.ThemSP(_editedSP);
       }
     } catch (error) {
-      await loiHT(context, 'something went wrong,');
+      await LoiHT(context, 'something went wrong,');
     }
     setState(() {
       _isLoading = false;
@@ -133,7 +133,7 @@ class _EditSanPhamState extends State<EditSanPham> {
   TextFormField buildNameField() {
     return TextFormField(
       initialValue: _editedSP.name,
-      decoration: const InputDecoration(labelText: 'Tên'),
+      decoration: const InputDecoration(labelText: 'Name'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
@@ -151,7 +151,7 @@ class _EditSanPhamState extends State<EditSanPham> {
   TextFormField buildAuthorField() {
     return TextFormField(
       initialValue: _editedSP.author,
-      decoration: const InputDecoration(labelText: 'Tác giả'),
+      decoration: const InputDecoration(labelText: 'Author'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
@@ -169,7 +169,7 @@ class _EditSanPhamState extends State<EditSanPham> {
   TextFormField buildCategoryField() {
     return TextFormField(
       initialValue: _editedSP.category,
-      decoration: const InputDecoration(labelText: 'Thể loại'),
+      decoration: const InputDecoration(labelText: 'Category'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {
@@ -205,7 +205,7 @@ class _EditSanPhamState extends State<EditSanPham> {
   TextFormField buildPriceField() {
     return TextFormField(
       initialValue: _editedSP.price.toString(),
-      decoration: const InputDecoration(labelText: 'Giá'),
+      decoration: const InputDecoration(labelText: 'Price'),
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.number,
       validator: (value) {
@@ -229,7 +229,7 @@ class _EditSanPhamState extends State<EditSanPham> {
   TextFormField buildDescriptionField() {
     return TextFormField(
       initialValue: _editedSP.description,
-      decoration: const InputDecoration(labelText: 'Tóm tắt'),
+      decoration: const InputDecoration(labelText: 'Description'),
       maxLines: 3,
       keyboardType: TextInputType.multiline,
       validator: (value) {

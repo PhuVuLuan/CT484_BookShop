@@ -12,18 +12,15 @@ class showOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Trang đặt hàng');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sản Phẩm Đã Đặt Hàng'),
-      ),
-      drawer: const DieuHuong(),
-      body: Consumer<QuanLyDH>(
-         builder: (ctx, quanlyDH, child) {
-            return ListView.builder(
+        appBar: AppBar(
+          title: const Text('Sản Phẩm Đã Đặt Hàng'),
+        ),
+        drawer: const DieuHuong(),
+        body: Consumer<QuanLyDH>(builder: (ctx, quanlyDH, child) {
+          return ListView.builder(
             itemCount: quanlyDH.soLuongDatHang,
             itemBuilder: (ctx, i) => showOrderItem(quanlyDH.dathang[i]),
-        );
-      }
-      )
-    );
+          );
+        }));
   }
 }

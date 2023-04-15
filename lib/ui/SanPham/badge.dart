@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
 class badge extends StatelessWidget {
   final Widget child;
   final Object data;
